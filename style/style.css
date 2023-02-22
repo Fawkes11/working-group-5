@@ -11,6 +11,13 @@
     justify-content: space-between;
 }
 
+/*category*/
+
+.categoria{
+    
+    margin-right: 50%;
+}
+
 /*footer*/
 .redes {
     padding: 20px;
