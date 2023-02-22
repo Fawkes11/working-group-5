@@ -1,0 +1,63 @@
+/*navbar*/
+
+.navbar {
+    padding: 2rem;
+    /* background-color: #1f53c5;*/
+    background-color: #f5f6f7;
+}
+
+.navbar-collapse {
+    align-items: center;
+    justify-content: space-between;
+}
+
+/*footer*/
+.redes {
+    padding: 20px;
+    text-align: center;
+    background-color: #1f53c5;
+    color: aliceblue;
+}
+
+.redes a {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px;
+    margin: 10px;
+    border: 2px solid black;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.redes i {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.pais h1 {
+    color: black;
+    text-decoration: none;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+/*adaptable reponsive*/
+
+
+@media screen and (max-width: 700px) {
+    .redes {
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
