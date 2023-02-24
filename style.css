@@ -1,15 +1,19 @@
 /*details.html*/
-
-.card1 {
-    
-margin-top: 15%;
-
+.card {
+    width: 79%;
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 13%;
+    background-color: rgb(186, 182, 182);
 }
 
-
-.card-body{
-
+.card-body-details{
     margin-top: 5%;
     margin-left: 10%;
     margin-right: 10%;
+}
+.imagen_details{
+    width: 950px;
+    margin-top: 15%;
+    margin-left: 10%;
 }
