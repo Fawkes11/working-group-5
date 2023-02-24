@@ -114,6 +114,7 @@ footer {
 
 @media screen and (max-width: 800px) {
     .categoria {
+index
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -121,4 +122,21 @@ footer {
 
     }
 
+
+       display: flex;
+      flex-direction: column;
+       align-items: center;
+      
+       
+     }
+   
+   }
+ 
+/*Styles Page Stats*/
+
+.table td {
+    height: 30px;
 }
+
+.div_table {
+    padding: 3%;
