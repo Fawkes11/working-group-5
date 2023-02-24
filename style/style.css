@@ -111,3 +111,12 @@ footer {
    
    }
  
+/*Styles Page Stats*/
+
+.table td {
+    height: 30px;
+}
+
+.div_table {
+    padding: 3%;
+}
