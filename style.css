@@ -1,19 +1,37 @@
 /*details.html*/
-.card {
+.card_details {
+    
     width: 79%;
-    margin-top: 10%;
+    margin-top: 4%;
     margin-left: 10%;
     margin-right: 13%;
     background-color: rgb(186, 182, 182);
+    filter: drop-shadow(5px 5px 5px black);
+
 }
+
 
 .card-body-details{
     margin-top: 5%;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 2%;
+    margin-right: 3%;
 }
+
 .imagen_details{
-    width: 950px;
-    margin-top: 15%;
-    margin-left: 10%;
+    position: relative;
+    width: 90%;
+    height: 70%;
+    filter: drop-shadow(2px 2px 2px black);
+}
+
+.card-title-details{
+    padding: 2%;
+    font-size: 40px;
+}
+
+.card-text-details {
+    padding: 2%;
+    font-size: 20px;
+    margin-left: 5%;
+
 }
