@@ -198,8 +198,8 @@ function createLetters(id, objetoData) {
       <p class="card-text">${objetoData.date}</p>
   </div>
   <div class="informacion card-body ">
-      <h1>${objetoData.price}</h1>
-      <a href="./details.html"> <button type="button" class="btn btn-primary">Ver mas</button></a>
+      <h2>${objetoData.price}</h2>
+      <a href="./details.html" class="btn btn-primary" > Ver mas</a>
   </div>
 `
   return div
