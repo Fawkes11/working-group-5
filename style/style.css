@@ -1,7 +1,7 @@
+/* ------ GENERAL ------ */
 * {
     margin: 0;
     padding: 0;
-
 }
 
 /*navbar*/
@@ -9,7 +9,6 @@
     padding: 2rem;
     /* background-color: #1f53c5;*/
     background-color: #f5f6f7;
-
 }
 
 .navbar-collapse {
@@ -19,7 +18,6 @@
 
 /*category*/
 .categoria {
-
     margin-top: 2%;
     margin-bottom: 5%;
 }
@@ -36,7 +34,6 @@
 }
 
 /*cards*/
-
 .row .informacion h2 {
     font-size: 1.2rem;
 }
@@ -65,45 +62,36 @@
     justify-content: space-around;
 }
 
-/*details*/
+/* ------ DETAILS ------ */
 .card_details {
-    
-    width: 79%;
-    margin-top: 4%;
-    margin-left: 10%;
-    margin-right: 13%;
-    background-color: rgb(186, 182, 182);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     filter: drop-shadow(5px 5px 5px black);
-
+    font-size: 10pt;
 }
 
+.card-temp {
+    width: 60%;
+    margin: 1rem 0rem;
+}
 
-.card-body-details{
-    margin-top: 5%;
-    margin-left: 2%;
-    margin-right: 3%;
+.location-img {
+    display: flex;
+    align-items: center;
 }
 
 .imagen_details{
-    position: relative;
-    width: 90%;
-    height: 70%;
+    width: 100%;
+    height: auto;
     filter: drop-shadow(2px 2px 2px black);
 }
 
 .card-title-details{
-    padding: 2%;
-    font-size: 40px;
+    font-weight: bolder;
 }
 
-.card-text-details {
-    padding: 2%;
-    font-size: 20px;
-    margin-left: 5%;
-
-}
-
-
+/* ------ DETAILS end ------ */
 
 /*footer*/
 .redes {
@@ -137,16 +125,13 @@
 }
 
 footer {
-    margin-top: 15px;
+    margin-top: 15px; /* TO-DO */
     bottom: 0px;
     left: 0;
     width: 100%;
-
-
 }
 
-
-/*adaptable reponsive*/
+/* ------ ADAPTABLE RESPONSIVE ------ */
 @media screen and (max-width: 800px) {
     .redes {
         padding: 50px;
@@ -155,7 +140,6 @@ footer {
         align-items: center;
     }
 }
-
 
 @media screen and (max-width: 800px) {
     .categoria {
@@ -166,9 +150,7 @@ footer {
     }
 }
 
-
-
-/*Styles Page Stats*/
+/* ------ STATS ------ */
 
 .table td {
     height: 30px;
