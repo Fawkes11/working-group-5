@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 
 }
 
@@ -59,6 +60,7 @@
     margin-bottom: 4%;
 
 }
+
 .cartsJS .card {
     display: flex;
     flex-direction: row;
@@ -67,7 +69,7 @@
 
 /*details*/
 .card_details {
-    
+
     width: 79%;
     margin-top: 4%;
     margin-left: 10%;
@@ -78,20 +80,20 @@
 }
 
 
-.card-body-details{
+.card-body-details {
     margin-top: 5%;
     margin-left: 2%;
     margin-right: 3%;
 }
 
-.imagen_details{
+.imagen_details {
     position: relative;
     width: 90%;
     height: 70%;
     filter: drop-shadow(2px 2px 2px black);
 }
 
-.card-title-details{
+.card-title-details {
     padding: 2%;
     font-size: 40px;
 }
@@ -159,7 +161,7 @@ footer {
 
 @media screen and (max-width: 800px) {
     .categoria {
-         display: flex;
+        display: flex;
         flex-direction: column;
         align-items: center;
 
@@ -183,3 +185,93 @@ footer {
 .card_page_index {
     width: 18rem;
 }
+/*swiper*/
+
+
+
+.container {
+
+    background-color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 90vh;
+    box-shadow: 15px 15px 15px 15px rgba(8, 0, 0, 0.25);
+}
+
+
+.container {
+    width: 90%;
+    padding: 10px 40px;
+    margin-top: 10%;
+  margin-bottom: 15%;
+}
+
+.container .swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.container .swiper-slide {
+    position: relative;
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    border-radius: 15px;
+    text-align: start;
+    box-shadow: 0px 4px 4px rgba(196, 196, 196, 0.25);
+
+}
+
+.container .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+}
+
+.container .swiper-slide .card-description {
+    padding: 1rem 1rem;
+}
+
+.container .swiper-slide .card-title,
+.container .swiper-slide .card-text {
+    margin-bottom: .1rem;
+    /* margin-top: 10rem; */
+
+
+}
+
+.container .swiper-slide .card-link {
+    text-align: center;
+
+}
+
+.container .swiper-slide .card-link a {
+    text-decoration: none;
+    color: #1d6ce2;
+}
+
+.swiper-button-next {
+
+    right: 26px !important;
+margin-top: 22%;
+
+}
+
+.swiper-button-prev {
+    left: 26px !important;
+    margin-top: 22%;
+   
+   
+}
+
+.btn-swiper{
+    color: #000;
+}
+
