@@ -8,7 +8,6 @@
 /*navbar*/
 .navbar {
     padding: 2rem;
-    /* background-color: #1f53c5;*/
     background-color: #f5f6f7;
 }
 
@@ -31,7 +30,10 @@
 .carousel-item {
     max-height: 100px;
     width: 100%;
-    margin: 0 auto;
+}
+
+.carousel-control-prev-icon {
+    color: #000;
 }
 
 /*cards*/
@@ -99,7 +101,8 @@
 .redes {
     padding: 20px;
     text-align: center;
-    background-color: #1f53c5;
+    background-color: #f5f6f7;
+    box-shadow: 15px 15px 15px 15px rgba(8, 0, 0, 0.25);
     color: aliceblue;
 }
 
@@ -113,6 +116,8 @@
     margin: 10px;
     border: 2px solid black;
     background-color: black;
+
+
     border-radius: 50%;
 }
 
@@ -163,9 +168,12 @@ footer {
     padding: 3%;
 }
 
-/*swiper*/
-.container {
 
+/*swiper*/
+
+
+
+.container-carousel {
     background-color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #000;
@@ -174,21 +182,23 @@ footer {
     align-items: center;
     min-height: 90vh;
     box-shadow: 15px 15px 15px 15px rgba(8, 0, 0, 0.25);
-}
-
-.container {
     width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
     padding: 10px 40px;
     margin-top: 10%;
-  margin-bottom: 15%;
+    margin-bottom: 15%;
+    overflow: hidden;
 }
 
-.container .swiper-container {
+
+
+.container-carousel .swiper-container {
     width: 100%;
     height: 100%;
 }
 
-.container .swiper-slide {
+.container-carousel .swiper-slide {
     position: relative;
     text-align: center;
     font-size: 18px;
@@ -196,9 +206,10 @@ footer {
     border-radius: 15px;
     text-align: start;
     box-shadow: 0px 4px 4px rgba(196, 196, 196, 0.25);
+
 }
 
-.container .swiper-slide img {
+.container-carousel .swiper-slide img {
     display: block;
     width: 100%;
     height: 180px;
@@ -207,21 +218,23 @@ footer {
     border-top-right-radius: 15px;
 }
 
-.container .swiper-slide .card-description {
+.container-carousel .swiper-slide .card-description {
     padding: 1rem 1rem;
 }
 
-.container .swiper-slide .card-title,
-.container .swiper-slide .card-text {
+.container-carousel .swiper-slide .card-title,
+.container-carousel .swiper-slide .card-text {
     margin-bottom: .1rem;
     /* margin-top: 10rem; */
+
+
 }
 
-.container .swiper-slide .card-link {
+.container-carousel .swiper-slide .card-link {
     text-align: center;
 }
 
-.container .swiper-slide .card-link a {
+.container-carousel .swiper-slide .card-link a {
     text-decoration: none;
     color: #1d6ce2;
 }
@@ -229,14 +242,16 @@ footer {
 .swiper-button-next {
     right: 26px !important;
 margin-top: 22%;
+
 }
 
 .swiper-button-prev {
     left: 26px !important;
     margin-top: 22%;
+   
+   
 }
 
-.btn-swiper{
+.btn-swiper {
     color: #000;
 }
-
