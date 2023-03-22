@@ -1,0 +1,10 @@
+# Ignorar el archivo settings.json de VS Code
+.vscode/settings.json
+
+# Ignorar archivos y directorios generados por el sistema
+.DS_Store
+Thumbs.db
+node_modules/
+dist/
+tmp/
+log/
