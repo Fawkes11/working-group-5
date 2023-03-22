@@ -178,7 +178,7 @@ console.log(arrayPastEvents);
 
 for (let i = 0; i < arrayPastEvents.length; i++) {
 
-  let id = "tarjeta" + (i + 1)
+  let id = `card${i+1}`
   let div = createLetters(id, arrayPastEvents[i]);
   document.getElementById('section').appendChild(div)
 
@@ -201,7 +201,7 @@ function createLetters(id, objetoData) {
           </div>
           <div class="card-link d-flex justify-content-evenly align-items-center">
           <h2>${objetoData.price}</h2>
-              <a href="#">Ver más</a>
+              <a href="../pages/details.html?${id}">Ver más</a>
           </div>
       </div>  
 `
