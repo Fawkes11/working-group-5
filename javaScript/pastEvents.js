@@ -39,7 +39,7 @@ function createLetters(id, objetoData) {
           </div>
           <div class="card-link d-flex justify-content-evenly align-items-center">
           <h2>${objetoData.price}</h2>
-              <a href="../pages/details.html?${objetoData.id}">Ver más</a>
+              <a href="../pages/details.html?id=${objetoData.id}">Ver más</a>
           </div>
       </div>  
 `
