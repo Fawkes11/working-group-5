@@ -11,11 +11,11 @@ upComingEvents.forEach((item, index) => {
     document.getElementById('upcomingCardsSection').appendChild(card)
 })
 
-function createCard(id, { image, name, description }) {
-    console.log(id, name, image, description)
+function createCard(id, { image, name,price, description }) {
+    
     let card = document.createElement('div');
     card.id = id;
-    card.className = "card "
+    card.className = "swiper-slide "
     card.style = "width: 18rem;"
 
     card.innerHTML = `
@@ -23,9 +23,41 @@ function createCard(id, { image, name, description }) {
                         <div class="card-body">
                             <h5 class="card-title">${name}</h5>
                             <p class="card-text">${description}</p>
-                            <a href="../pages/details.html?${id}" class="btn btn-primary">Go somewhere</a>
+                            <div class='d-flex justify-content-evenly align-items-center full'>
+                                <h2>${price}</h2>
+                                <a href="../pages/details.html?id=${id}" class="btn btn-outline-info btn-sm">Ver más</a>
+                            </div>
                         </div>
                     `
     return card
 }
 
+
+let swiper = new Swiper('.swiper-container', {
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+    slidesPerView: 1,
+    spaceBetween: 10,
+    // init: false,
+    breakpoints: {
+      620: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+      680: {
+        slidesPerView: 2,
+        spaceBetween: 40,
+      },
+      920: {
+        slidesPerView: 3,
+        spaceBetween: 40,
+      },
+      1240: {
+        slidesPerView: 4,
+        spaceBetween: 50,
+      },
+    }
+  });
+  
