@@ -160,7 +160,7 @@ export const data = {
             },
             {
                 "id": "card14",
-                "image": "https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2018/04/avengers_infinity_war_joe_anthony_russo.jpg?w=1500&quality=50&strip=all&ssl=1",
+                "image": "https://www.infobae.com/new-resizer/oftRX9IO2l5uY3ktTBhE7YsW7v8=/1200x900/filters:format(webp):quality(85)//s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2019/04/24133716/avengers-endgame-22.jpg",
                 "name": "Avengers",
                 "date": "2022-10-15",
                 "description": "Marvel's Avengers Premier in 3d, the start of an epic saga with your favourite superheroes.",
