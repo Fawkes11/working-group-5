@@ -7,11 +7,11 @@ const upComingEvents = events.filter((item) => item.date >= currentDate)
 
 upComingEvents.forEach((item, index) => {
     let id = `card${index + 1}`
-    let card = createCard(id, item);
+    let card = createCard(item);
     document.getElementById('upcomingCardsSection').appendChild(card)
 })
 
-function createCard(id, { image, name,price, description }) {
+function createCard({ id, image, name,price, description }) {
     
     let card = document.createElement('div');
     card.id = id;
