@@ -132,13 +132,14 @@
 }
 
 footer {
-    margin-top: 15px; /* TO-DO */
+    margin-top: 15px; 
     bottom: 0px;
     left: 0;
     width: 100%;
 }
 
 .details{
+    
     position: fixed;
     bottom: 0;
     left: 0;
