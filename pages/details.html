@@ -6,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="../images/Favicon.png" type="image/x-icon">
-    <title>Document</title>
-    <!--style-->
-    <link rel="stylesheet" href="../style/style.css">
+    <title>Event title</title>
+
     <!--bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <!--bootstrap icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!--style-->
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 
 <body>
@@ -53,24 +54,20 @@
     <div class="card_details">
         <div class="card mb-3 p-3 mb-5 card-temp">
             <div class="row">
-                <div class="col-md-6 location-img">
-                    <img src="../images/Feriadecomidas7.jpg" class="img-fluid imagen_details rounded-start rounded" alt="Evento Imagen">
+                <div id="card-img-detail" class="col-md-6 location-img">
                 </div>
                 <div class="col-md-6">
-                    <div class="card-body-details">
-                        <h5 class="card-title-details">The Fair of the 7 Meals</h5>
-                        <div class="card-text-details">
-                            <ul class="card-text-details">
-                                <li><a>Name: The Fair of the 7 Meals</a></li>
-                                <li><a>Date: December 2023</a></li>
-                                <li><a>Description: We invite you to the activity of the 7 meals, you will have the opportunity to know different special dishes,
-                                    of the varieties in the world, with the best chefs, which has 7 completely different entrances every night,
-                                    with a musical accompaniment of which you will enjoy,both as a couple and with friends, come and enjoy the variety we have for you.</a></li>
-                                <li><a>Category: Over 18</a></li>
-                                <li><a>location: Canada</a></li>
-                                <li><a>Capacity: 1000 people</a></li>
-                                <li><a>Attendance or estimate: 6000 people</a></li>
-                                <li><a>Price: 10.0 dollars</a></li>
+                    <div>
+                        <h5 id="card-title-detail" class="card-title-details">Event title</h5>
+                        <div>
+                            <ul>
+                                <li id="card-date"></li>
+                                <li id="card-description"></li>
+                                <li id="card-category"></li>
+                                <li id="card-location"></li>
+                                <li id="card-capacity"></li>
+                                <li id="card-attendance"></li>
+                                <li id="card-price"></li>
                             </ul>
                             <p class="card-text-small"><small class="text-muted">Last updated 3 mins ago</small></p>
                         </div>
@@ -95,6 +92,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../javaScript/details.js" type="module"></script>
 </body>
 
 </html>
