@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="../images/Favicon.png" type="image/x-icon">
+    <title>Event title</title>
 
     <!--bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
@@ -13,11 +14,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <!--style-->
     <link rel="stylesheet" href="../style/style.css">
-
-    <!--javascript data-->
-    <script src="../javaScript/details.js"></script>
-
-    <title>Document</title>
 </head>
 
 <body>
@@ -58,12 +54,11 @@
     <div class="card_details">
         <div class="card mb-3 p-3 mb-5 card-temp">
             <div class="row">
-                <div class="col-md-6 location-img">
-                    <img src="../images/Feriadecomidas7.jpg" class="img-fluid imagen_details rounded-start rounded" alt="Evento Imagen">
+                <div id="card-img-detail" class="col-md-6 location-img">
                 </div>
                 <div class="col-md-6">
                     <div>
-                        <h5 class="card-title-details">The Fair of the 7 Meals</h5>
+                        <h5 id="card-title-detail" class="card-title-details">Event title</h5>
                         <div>
                             <ul>
                                 <li id="card-date"></li>
@@ -97,6 +92,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../javaScript/details.js" type="module"></script>
 </body>
 
 </html>
