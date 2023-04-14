@@ -1,3 +1,4 @@
+
 import { data } from './data.js'
 
 let arrayHome = [];
@@ -68,3 +69,4 @@ let swiper = new Swiper('.swiper-container', {
     },
   }
 });
+
