@@ -1,14 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Secular+One&display=swap');
+
 /* ------ GENERAL ------ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
+
+/* body{
+    background-color:  #F2D7D5;
+} */
 
 /*navbar*/
 .navbar {
     padding: 2rem;
-    background-color: #f5f6f7;
+    background-color: #F2D7D5;
+    color: #ffffff;
+ 
 }
 
 .navbar-collapse {
@@ -16,10 +26,34 @@
     justify-content: space-between;
 }
 
+/*MOVIMINETO DE LINEA ABAJO DE LOS ENUNCIADOS*/
+
+.nav-link {
+    border-bottom: 2px solid transparent;
+    font-family: 'Lobster', cursive;
+
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    border-bottom-color: #000;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ff8c00;
+}
+.navbar-nav .nav-link {
+    font-size: 1.2rem;
+  }
+
+
 /*category*/
 .categoria {
     margin-top: 2%;
     margin-bottom: 5%;
+    display: flex;
+    flex-direction: row-reverse;
+    font-family: 'Lobster', cursive;
 }
 
 .search {
@@ -28,8 +62,14 @@
 
 /*carousel*/
 .carousel-item {
-    max-height: 100px;
+    max-height: 200px;
     width: 100%;
+}
+
+.carousel-item h5 {
+    color: white;
+    font-size: 40px;
+    font-family: 'Lobster', cursive;
 }
 
 .carousel-control-prev-icon {
@@ -85,13 +125,13 @@
     align-items: center;
 }
 
-.imagen_details{
+.imagen_details {
     width: 100%;
     height: auto;
     filter: drop-shadow(2px 2px 2px black);
 }
 
-.card-title-details{
+.card-title-details {
     font-weight: bolder;
 }
 
@@ -101,7 +141,8 @@
 .redes {
     padding: 20px;
     text-align: center;
-    background-color: #f5f6f7;
+    /* background-color: #f5f6f7; */
+    background-color:  #F2D7D5;
     box-shadow: 15px 15px 15px 15px rgba(8, 0, 0, 0.25);
     color: aliceblue;
 }
@@ -122,6 +163,7 @@
 }
 
 .redes i {
+  
     color: white;
     font-size: 1.5rem;
 }
@@ -129,17 +171,19 @@
 .pais h1 {
     color: black;
     text-decoration: none;
+    font-family: 'Lobster', cursive;
 }
 
 footer {
-    margin-top: 15px; 
+    margin-top: 15px;
     bottom: 0px;
     left: 0;
     width: 100%;
+   
 }
 
-.details{
-    
+.details {
+
     position: fixed;
     bottom: 0;
     left: 0;
@@ -183,6 +227,7 @@ footer {
 .card_page_index {
     width: 18rem;
 }
+
 /*swiper*/
 
 
@@ -255,15 +300,15 @@ footer {
 
 .swiper-button-next {
     right: 26px !important;
-margin-top: 22%;
+    margin-top: 22%;
 
 }
 
 .swiper-button-prev {
     left: 26px !important;
     margin-top: 22%;
-   
-   
+
+
 }
 
 .btn-swiper {
