@@ -29,17 +29,17 @@ function createLetters(id, objetoData) {
   div.className = 'swiper-slide'
 
   div.innerHTML = ` 
-      <img src="${objetoData.image}" alt="">
+      <img  src="${objetoData.image}" alt="">
       <div class="card-description">
           <div class="card-title">
-              <h4>${objetoData.name}</h4>
+              <h4  style="display: flex; justify-content: center; text-transform: uppercase;" >${objetoData.name}</h4>
           </div>
           <div class="card-text">
               <p style=" font-family: 'Lobster', cursive;">${objetoData.description}</p>
           </div>
           <div class="card-link d-flex justify-content-evenly align-items-center ">
           <h2>${objetoData.price}</h2>
-              <a href="../pages/details.html?id=${objetoData.id}">Ver más</a>
+              <a href="../pages/details.html?id=${objetoData.id}" style=" font-family: 'Lobster', cursive;">Ver más</a>
           </div>
       </div>  
 `
@@ -92,6 +92,7 @@ searchButton.addEventListener('click', (event) => {
   filterByText(arrayPastEvents)
 })
 
+/*----------------- filter by text and category too, if one  category check the search only filter this category ----------- */
 function filterByText(arrayPastEvents) {
   const text = searchInput.value.toLowerCase();
 
@@ -109,13 +110,16 @@ function filterByText(arrayPastEvents) {
   console.log(filteredEvents);
   cardFilter(filteredEvents);
 
-  const messageCard = document.getElementById('messageCard');
+  const messageCard = document.getElementById('section');
 
   if (filteredEvents.length === 0) {
-    messageCard.innerHTML = `<div class="alert alert-danger" role="alert" style="display:flex;  font-family: 'Secular One', sans-serif; justify-content:center; padding:20px; margin:5px 20px 0px 20px" >THE ENTERED TITLE DOES NOT HAVE CHARACTERISTICS TO DISPLAY, ENTER ANOTHER TEXT FIELD</div>`;
+    messageCard.innerHTML = `
+    
+    <div class="alert alert-danger" role="alert" style="display:flex; justify-content:center; padding:20px; margin:5px 20px 0px 20px font-family: 'Secular One', sans-serif;" >
+    <img  src="../images/logo-warning-message.png" alt="">
+    THE ENTERED TITLE DOES NOT HAVE CHARACTERISTICS TO DISPLAY, ENTER ANOTHER TEXT FIELD</div>`;
     return;
   }
-
   messageCard.innerHTML = '';
 }
 
@@ -140,6 +144,8 @@ function filterCategory(category) {
     viewCategoryByFilter(arrayPastEvents, '');
   }
 }
+
+
 
 function removeCategory(category) {
   selectedCategories = selectedCategories.filter(selectedCategory => selectedCategory !== category.toLowerCase());
@@ -188,7 +194,7 @@ category.forEach(category => {
 })
 
 
-/* funtion category filter */
+/* -------funtion category filter------- */
 
 let selectedCategories = [];
 
@@ -216,4 +222,5 @@ function viewCategoryByFilter(arrayPastEvents, category) {
     document.getElementById('section').appendChild(div);
   }
 }
+
 

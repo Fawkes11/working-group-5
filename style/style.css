@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+
 }
 
 /* body{
@@ -18,7 +18,7 @@
     padding: 2rem;
     background-color: #F2D7D5;
     color: #ffffff;
- 
+
 }
 
 .navbar-collapse {
@@ -40,11 +40,12 @@
 }
 
 .navbar-nav .nav-link:hover {
-    color: #ff8c00;
+    color: #D82199;
 }
+
 .navbar-nav .nav-link {
     font-size: 1.2rem;
-  }
+}
 
 
 /*category*/
@@ -142,7 +143,7 @@
     padding: 20px;
     text-align: center;
     /* background-color: #f5f6f7; */
-    background-color:  #F2D7D5;
+    background-color: #F2D7D5;
     box-shadow: 15px 15px 15px 15px rgba(8, 0, 0, 0.25);
     color: aliceblue;
 }
@@ -163,7 +164,7 @@
 }
 
 .redes i {
-  
+
     color: white;
     font-size: 1.5rem;
 }
@@ -179,7 +180,7 @@ footer {
     bottom: 0px;
     left: 0;
     width: 100%;
-   
+
 }
 
 .details {
@@ -300,17 +301,26 @@ footer {
 
 .swiper-button-next {
     right: 26px !important;
-    margin-top: 22%;
+    margin-top: 30%;
 
 }
 
 .swiper-button-prev {
     left: 26px !important;
-    margin-top: 22%;
+    margin-top: 30%;
 
 
 }
 
 .btn-swiper {
+
     color: #000;
+}
+
+.alert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
 }
