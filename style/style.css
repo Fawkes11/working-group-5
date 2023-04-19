@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Secular+One&display=swap');
 
+
 /* ------ GENERAL ------ */
 * {
     margin: 0;
@@ -221,6 +222,8 @@ footer {
 
 .div_table {
     padding: 3%;
+    font-family:Raleway;
+
 }
 
 
@@ -324,3 +327,10 @@ footer {
 
 
 }
+
+/*-------- contact-container----------*/
+
+.contact-container{
+    font-family: 'Lobster', cursive;
+}
+
