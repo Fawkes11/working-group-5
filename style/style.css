@@ -65,13 +65,13 @@
 
 
 /*category*/
-/* .categoria {
+.categoria {
     margin-top: 2%;
     margin-bottom: 5%;
     display: flex;
     flex-direction: row-reverse;
     font-family: 'Lobster', cursive;
-} */
+}
 
 .categoriaUpComing{
     margin-top: 2%;
@@ -228,7 +228,14 @@ footer {
     }
 }
 
+@media screen and (max-width: 1081px) {
+    .categoria  {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
+    }
+}
 @media screen and (max-width: 1081px) {
     .categoriaUpComing  {
         display: flex;
