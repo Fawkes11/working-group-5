@@ -80,13 +80,15 @@ let categories = [... new Set(arrayEventos.map(evento => evento.category))]
 // console.log(categories)
 let categories_check = categories.map(category => {return {id: category.toLowerCase().replaceAll(" ", ""), label: category }})
 // console.log(categories_check)
-const containerCategory = document.getElementById('category');
+const containerCategories = document.getElementById('category');
 
 categories_check.forEach(category => {
   // create input type check
   const input_check = document.createElement('input');
   input_check.setAttribute('type', 'checkbox');
   input_check.setAttribute('id', category.id);
+  input_check.setAttribute('value', category.label);
+  input_check.classList.add("class_checks")
   // create label
   const label = document.createElement('label');
   label.setAttribute('for', category.id);
@@ -95,5 +97,30 @@ categories_check.forEach(category => {
   const div = document.createElement('div');
   div.appendChild(input_check);
   div.appendChild(label);
-  containerCategory.appendChild(div);
+  containerCategories.appendChild(div);
+})
+
+/* ---------- Filtro de Checkboxes y de Input Text  ---------- */
+
+/* FUNCTION: filtra los eventos según checks e input */
+function filters() {
+  let texto = document.getElementById('searchInTitle').value
+  let checks = Array.from(document.querySelectorAll('.class_checks:checked')).map(each => each.value)
+  // console.log(checks)
+  let filtro = arrayEventos.filter(evento => {
+    return (evento.name.includes(texto)) && (checks.length === 0 || checks.includes(evento.category))
+  })
+  console.log(filtro)
+  if (filtro.length>0) {
+    console.log("pintar")
+  } else {
+    console.log("error array vacío")
+  }
+}
+
+categories_check.forEach(category => {
+  const checkbox = document.getElementById(category.id);
+  checkbox.addEventListener('click', () => {
+    filters();
+  })
 })
