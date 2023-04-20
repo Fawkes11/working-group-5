@@ -27,14 +27,14 @@ function createEventCard(id, objetoEvento) {
       <img src="${objetoEvento.image}" alt="...">
       <div class="card-description">
           <div class="card-title">
-              <h4>${objetoEvento.name}</h4>
+              <h4  style="display: flex; justify-content: center; text-transform: uppercase;" >${objetoEvento.name}</h4>
           </div>
           <div class="card-text">
-              <p>${objetoEvento.description}</p>
+              <p style=" font-family: Raleway;" >${objetoEvento.description}</p>
           </div>
           <div class="card-link d-flex justify-content-evenly align-items-center">
           <h2>${objetoEvento.price}</h2>
-              <a href="./pages/details.html?id=${objetoEvento.id}">Ver más</a>
+              <a href="./pages/details.html?id=${objetoEvento.id}" style=" font-family: 'Lobster', cursive;" >Ver más</a>
           </div>
       </div>
 `
