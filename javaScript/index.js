@@ -27,14 +27,14 @@ function createEventCard(id, objetoEvento) {
       <img src="${objetoEvento.image}" alt="...">
       <div class="card-description">
           <div class="card-title">
-              <h4>${objetoEvento.name}</h4>
+              <h4  style="display: flex; justify-content: center; text-transform: uppercase;" >${objetoEvento.name}</h4>
           </div>
           <div class="card-text">
-              <p>${objetoEvento.description}</p>
+              <p style=" font-family: Raleway;" >${objetoEvento.description}</p>
           </div>
           <div class="card-link d-flex justify-content-evenly align-items-center">
           <h2>${objetoEvento.price}</h2>
-              <a href="./pages/details.html?id=${objetoEvento.id}">Ver más</a>
+              <a href="./pages/details.html?id=${objetoEvento.id}" style=" font-family: 'Lobster', cursive;" >Ver más</a>
           </div>
       </div>
 `
@@ -93,22 +93,24 @@ function printEmpty() {
 
   containerCards.innerHTML = `
     <div class="alert alert-danger" role="alert" style="display:flex; justify-content:center; padding:20px; margin:5px 20px 0px 20px font-family: 'Secular One', sans-serif;" >
-    THE ENTERED TITLE DOES NOT HAVE CHARACTERISTICS TO DISPLAY, ENTER ANOTHER TEXT FIELD</div>`
+    <img  src="./images/logo-warning-message.png" alt="">
+    THE ENTERED TITLE DOES NOT HAVE CHARACTERISTICS TO DISPLAY, ENTER ANOTHER TEXT FIELD</div>`;
 }
 
 /* FUNCTION: filtra los eventos según checks e input */
 function filters() {
-  let texto = document.getElementById('searchInTitle').value
-  let checks = Array.from(document.querySelectorAll('.class_checks:checked')).map(each => each.value)
-  // console.log(checks)
+  let texto = document.getElementById('searchInTitle').value.toLowerCase();
+  // console.log(texto);
+  let checks = Array.from(document.querySelectorAll('.class_checks:checked')).map(each => each.value);
+  // console.log(checks);
   let filtro = arrayEventos.filter(evento => {
-    return (evento.name.includes(texto)) && (checks.length === 0 || checks.includes(evento.category))
-  })
-  // console.log(filtro)
+    return (evento.name.toLowerCase().includes(texto)) && (checks.length === 0 || checks.includes(evento.category))
+  });
+  console.log(filtro);
   if (filtro.length>0) {
-    printCards(filtro)
+    printCards(filtro);
   } else {
-    printEmpty()
+    printEmpty();
   }
 }
 
@@ -124,7 +126,7 @@ categories_check.forEach(category => {
 const searchButton = document.getElementById('buttonSearch');
 searchButton.addEventListener('click', (event) => {
   event.preventDefault();
-  filters()
+  filters();
 })
 
 
