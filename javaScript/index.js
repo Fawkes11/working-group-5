@@ -11,13 +11,22 @@ for (let i = 0; i < data.eventos.length; i++) {
 // console.log(arrayEventos);
 
 /* ---------- Creación de CARDS ---------- */
-for (let i = 0; i < arrayEventos.length; i++) {
+/* FUNCTION: Pinta las cards según el arreglo de eventos
+ * que ingrese por parámetro */
+function printCards(array) {
+  const containerCategory = document.getElementById('section');
+  containerCategory.innerHTML = '';
 
-  let id = `card${i+1}`
-  let div = createEventCard(id, arrayEventos[i]);
-  document.getElementById('section').appendChild(div)
+  for (let i = 0; i < array.length; i++) {
 
+    let id = `card${i+1}`
+    let div = createEventCard(id, array[i]);
+    document.getElementById('section').appendChild(div)
+
+  }
 }
+
+printCards(arrayEventos)
 
 /* FUNCTION: Retorna UN div para cada evento
  * Recibe un id que será el identificador del evento
@@ -112,7 +121,7 @@ function filters() {
   })
   console.log(filtro)
   if (filtro.length>0) {
-    console.log("pintar")
+    printCards(filtro)
   } else {
     console.log("error array vacío")
   }
