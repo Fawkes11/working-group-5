@@ -1,6 +1,6 @@
 ## Working-group-6
 
-Working group for PROtalent
+Working group for PROtalent | Mindhub
 
 |      number    |Name                           |Email                        |
 |----------------|-------------------------------|-----------------------------|
