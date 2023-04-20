@@ -8,7 +8,7 @@ for (let i = 0; i < data.eventos.length; i++) {
   arrayEventos.push(data.eventos[i]);
 
 }
-console.log(arrayEventos);
+// console.log(arrayEventos);
 
 /* ---------- Creación de CARDS ---------- */
 for (let i = 0; i < arrayEventos.length; i++) {
@@ -74,3 +74,26 @@ let swiper = new Swiper('.swiper-container', {
     },
   }
 });
+
+/* ---------- Creación de Checkboxes ---------- */
+let categories = [... new Set(arrayEventos.map(evento => evento.category))]
+// console.log(categories)
+let categories_check = categories.map(category => {return {id: category.toLowerCase().replaceAll(" ", ""), label: category }})
+// console.log(categories_check)
+const containerCategory = document.getElementById('category');
+
+categories_check.forEach(category => {
+  // create input type check
+  const input_check = document.createElement('input');
+  input_check.setAttribute('type', 'checkbox');
+  input_check.setAttribute('id', category.id);
+  // create label
+  const label = document.createElement('label');
+  label.setAttribute('for', category.id);
+  label.textContent = category.label;
+  // create div
+  const div = document.createElement('div');
+  div.appendChild(input_check);
+  div.appendChild(label);
+  containerCategory.appendChild(div);
+})
