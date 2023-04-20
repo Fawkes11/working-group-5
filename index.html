@@ -75,46 +75,25 @@
     </div>
 
     <!--button-->
-    <div class=" categoria d-flex justify-content-around  ">
-        <div>
-            <input  type="checkbox"> Food Fair
-        </div>
-        <div>
-            <input type="checkbox"> Museum
-        </div>
-        <div>
-            <input type="checkbox"> Costume Party
-        </div>
-        <div>
-            <input type="checkbox"> Music Concert
-        </div>
-        <div>
-            <input type="checkbox"> Race
-        </div>
-        <div>
-            <input type="checkbox"> Book Exchange
-        </div>
-        <div>
-            <input type="checkbox"> Cinema
-        </div>
+    <div class="filters d-flex justify-content-between">
+        <!--checkbox to create in javascript-->
+        <div class="d-flex justify-content-between" id="category"></div>
+        <!--form for search by text-->
         <form class=" search  d-flex " role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+            <input id="searchInTitle" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button id="buttonSearch" class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
         </form>
     </div>
 
     <!--cards-->
     <div class="container-carousel">
         <div class="swiper-container mySwiper">
-            <div id="section" class="swiper-wrapper">
-                
-            </div>
+            <div id="section" class="swiper-wrapper"></div>
             <div class=" btn-swiper swiper-button-next"></div>
             <div class=" btn-swiper swiper-button-prev"></div>
         </div>
     </div>
 
-     
     <!--footer-->
     <footer class=" redes d-flex justify-content-between">
         <div class="  d-flex justify-content-start ">
