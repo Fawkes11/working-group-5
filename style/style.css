@@ -73,6 +73,14 @@
     font-family: 'Lobster', cursive;
 }
 
+.categoriaUpComing{
+    margin-top: 2%;
+    margin-bottom: 5%;
+    display: flex;
+    /* flex-direction: row-reverse; */
+    font-family: 'Lobster', cursive;
+}
+
 .search {
     width: 40%;
 }
