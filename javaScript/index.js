@@ -1,3 +1,4 @@
+
 import { data } from './data.js'
 
 /* ---------- Array principal ---------- */
