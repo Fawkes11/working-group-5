@@ -41,7 +41,8 @@
 }
 
 .navbar-nav .nav-link:hover {
-    color: #D82199;
+    color: #e0046c;
+    border-bottom-color: #e0046c;
 }
 
 .navbar-nav .nav-link {
