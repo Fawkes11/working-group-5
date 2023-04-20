@@ -1,6 +1,7 @@
 import { data } from './data.js'
 
 /* ---------- Array principal ---------- */
+
 let arrayEventos = [];
 
 for (let i = 0; i < data.eventos.length; i++) {
@@ -11,23 +12,6 @@ for (let i = 0; i < data.eventos.length; i++) {
 // console.log(arrayEventos);
 
 /* ---------- Creación de CARDS ---------- */
-
-/* FUNCTION: Pinta las cards según el arreglo de eventos
- * que ingrese por parámetro */
-function printCards(array) {
-  const containerCategory = document.getElementById('section');
-  containerCategory.innerHTML = '';
-
-  for (let i = 0; i < array.length; i++) {
-
-    let id = `card${i+1}`
-    let div = createEventCard(id, array[i]);
-    document.getElementById('section').appendChild(div)
-
-  }
-}
-
-printCards(arrayEventos)
 
 /* FUNCTION: Retorna UN div para cada evento
  * Recibe un id que será el identificador del evento
@@ -56,34 +40,22 @@ function createEventCard(id, objetoEvento) {
   return div
 }
 
-/* ---------- Gestión de complemento para carousel ---------- */
-let swiper = new Swiper('.swiper-container', {
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev'
-  },
-  slidesPerView: 1,
-  spaceBetween: 10,
+/* FUNCTION: Pinta las cards según el arreglo de eventos
+ * que ingrese por parámetro */
+function printCards(array) {
+  const containerCategory = document.getElementById('section');
+  containerCategory.innerHTML = '';
 
-  breakpoints: {
-    620: {
-      slidesPerView: 1,
-      spaceBetween: 20,
-    },
-    680: {
-      slidesPerView: 2,
-      spaceBetween: 40,
-    },
-    920: {
-      slidesPerView: 3,
-      spaceBetween: 40,
-    },
-    1240: {
-      slidesPerView: 4,
-      spaceBetween: 50,
-    },
+  for (let i = 0; i < array.length; i++) {
+
+    let id = `card${i+1}`
+    let div = createEventCard(id, array[i]);
+    document.getElementById('section').appendChild(div)
+
   }
-});
+}
+
+printCards(arrayEventos)
 
 /* ---------- Creación de Checkboxes ---------- */
 
@@ -131,7 +103,7 @@ function filters() {
   let filtro = arrayEventos.filter(evento => {
     return (evento.name.includes(texto)) && (checks.length === 0 || checks.includes(evento.category))
   })
-  console.log(filtro)
+  // console.log(filtro)
   if (filtro.length>0) {
     printCards(filtro)
   } else {
@@ -153,3 +125,33 @@ searchButton.addEventListener('click', (event) => {
   event.preventDefault();
   filters()
 })
+
+
+/* ---------- Gestión de complemento para carousel ---------- */
+let swiper = new Swiper('.swiper-container', {
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev'
+  },
+  slidesPerView: 1,
+  spaceBetween: 10,
+
+  breakpoints: {
+    620: {
+      slidesPerView: 1,
+      spaceBetween: 20,
+    },
+    680: {
+      slidesPerView: 2,
+      spaceBetween: 40,
+    },
+    920: {
+      slidesPerView: 3,
+      spaceBetween: 40,
+    },
+    1240: {
+      slidesPerView: 4,
+      spaceBetween: 50,
+    },
+  }
+});
