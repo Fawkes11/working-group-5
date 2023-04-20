@@ -11,6 +11,7 @@ for (let i = 0; i < data.eventos.length; i++) {
 // console.log(arrayEventos);
 
 /* ---------- Creación de CARDS ---------- */
+
 /* FUNCTION: Pinta las cards según el arreglo de eventos
  * que ingrese por parámetro */
 function printCards(array) {
@@ -85,6 +86,7 @@ let swiper = new Swiper('.swiper-container', {
 });
 
 /* ---------- Creación de Checkboxes ---------- */
+
 let categories = [... new Set(arrayEventos.map(evento => evento.category))]
 // console.log(categories)
 let categories_check = categories.map(category => {return {id: category.toLowerCase().replaceAll(" ", ""), label: category }})
@@ -111,6 +113,16 @@ categories_check.forEach(category => {
 
 /* ---------- Filtro de Checkboxes y de Input Text  ---------- */
 
+/* FUNCTION: Pinta mensaje de eventos vacíos */
+function printEmpty() {
+  const containerCards = document.getElementById('section');
+  containerCards.innerHTML = '';
+
+  containerCards.innerHTML = `
+    <div class="alert alert-danger" role="alert" style="display:flex; justify-content:center; padding:20px; margin:5px 20px 0px 20px font-family: 'Secular One', sans-serif;" >
+    THE ENTERED TITLE DOES NOT HAVE CHARACTERISTICS TO DISPLAY, ENTER ANOTHER TEXT FIELD</div>`
+}
+
 /* FUNCTION: filtra los eventos según checks e input */
 function filters() {
   let texto = document.getElementById('searchInTitle').value
@@ -123,13 +135,21 @@ function filters() {
   if (filtro.length>0) {
     printCards(filtro)
   } else {
-    console.log("error array vacío")
+    printEmpty()
   }
 }
 
+/* Agrega filtro a checks */
 categories_check.forEach(category => {
   const checkbox = document.getElementById(category.id);
   checkbox.addEventListener('click', () => {
     filters();
   })
+})
+
+/* Agrega filtro a input */
+const searchButton = document.getElementById('buttonSearch');
+searchButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  filters()
 })
