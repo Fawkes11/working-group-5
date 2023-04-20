@@ -52,13 +52,16 @@ function createCard({ id, image, name, price, description }) {
   card.innerHTML = `
                         <img class="card-img-top" src="${image}" alt="${name} image">
                         <div class="card-body">
-                            <h5 class="card-title">${name}</h5>
-                            <p class="card-text">${description}</p>
-                            <div class='d-flex justify-content-evenly align-items-center full'>
+                            <h5 class="card-title" style="display: flex; justify-content: center; text-transform: uppercase;">${name}</h5>
+                            <p class="card-text" style=" font-family: Raleway;" >${description}</p>
+                            <div class="card-link d-flex justify-content-evenly align-items-center">
                                 <h2>${price}</h2>
-                                <a href="../pages/details.html?id=${id}" class="btn btn-outline-info btn-sm">Ver más</a>
+                                <a href="../pages/details.html?id=${id}" style=" font-family: 'Lobster', cursive;">Ver más</a>
                             </div>
-                        </div>
+                        </div>   
+
+
+                       
                     `;
   return card;
 }
