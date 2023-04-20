@@ -35,7 +35,9 @@ function createLetters(id, objetoData) {
               <h4  style="display: flex; justify-content: center; text-transform: uppercase;" >${objetoData.name}</h4>
           </div>
           <div class="card-text">
-              <p style=" font-family: 'Lobster', cursive;">${objetoData.description}</p>
+
+              <p style=" font-family: Raleway;">${objetoData.description}</p>
+
           </div>
           <div class="card-link d-flex justify-content-evenly align-items-center ">
           <h2>${objetoData.price}</h2>
@@ -120,7 +122,8 @@ function filterByText(arrayPastEvents) {
     THE ENTERED TITLE DOES NOT HAVE CHARACTERISTICS TO DISPLAY, ENTER ANOTHER TEXT FIELD</div>`;
     return;
   }
-  messageCard.innerHTML = '';
+
+  // messageCard.innerHTML = '';
 }
 
 /*----function card filter view search------*/
@@ -168,6 +171,8 @@ category.forEach(category => {
   const checkbox = document.createElement('input');
   checkbox.setAttribute('type', 'checkbox');
   checkbox.setAttribute('id', category.id);
+
+
   /*------view card check checkbox------*/
   checkbox.onchange = () => {
     filterCategory(category.id);
