@@ -4,6 +4,8 @@
 :root
 {
     --amazing-events: #e0046c;
+    --amazing-events-dark: #980047;
+    --amazing-events-light: #de488e;
 }
 
 /* ------ GENERAL ------ */
@@ -168,21 +170,9 @@ footer {
 
 /* ------ PAGE INDEX ------ */
 
-/*Cards Page home Task 2
-.card_page_index {
-    width: 18rem;
-}*/
+/* ------ PAGE PAST ------ */
 
 /* ------ PAGE UPCOMING ------ */
-
-/* checkboxes */
-.categoriaUpComing{
-    margin-top: 2%;
-    margin-bottom: 5%;
-    display: flex;
-    /* flex-direction: row-reverse; */
-    font-family: 'Lobster', cursive;
-}
 
 /* ------ PAGE DETAILS ------ */
 
@@ -336,14 +326,6 @@ footer {
 
 @media screen and (max-width: 1081px) {
     .categoria  {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-    }
-}
-@media screen and (max-width: 1081px) {
-    .categoriaUpComing  {
         display: flex;
         flex-direction: column;
         align-items: center;
