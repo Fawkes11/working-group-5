@@ -19,8 +19,6 @@ async function fecthApi() {
         let arrayPercentage = namePercentagePast(eventsPast);
         let min = arrayPercentage[arrayPercentage.length-1]
         let max = arrayPercentage[0]
-        
-        
     } catch (error) {
         console.error(error);
     }
@@ -28,9 +26,8 @@ async function fecthApi() {
 
 fecthApi()
 
-
-/*--------------- process past  view the information --------------- */
 function pastName() {
+
     const categoryPast = document.getElementById('categoryPast');
     const percentage = percentagePast();
     const revenuesDataPast = revenuesPast();
@@ -40,15 +37,16 @@ function pastName() {
         row.innerHTML = `
             <td style="text-align: center;" >${eventsPast[i].name}</td>
             <td style="text-align: center;" >${revenuesDataPast[i]}</td>
-            <td style="text-align: center;" >${percentage[i]} %</td>   
+            <td style="text-align: center;" >${percentage[i]} %</td>
             `
         categoryPast.appendChild(row)
     }
 }
 
-/*-------- percentage past ----------*/
 function percentagePast() {
+
     const percentages = [];
+
     for (let i = 0; i < eventsPast.length; i++) {
         const capacity = eventsPast[i].capacity;
         const assistance = eventsPast[i].assistance
@@ -65,7 +63,9 @@ function percentagePast() {
 }
 
 function revenuesPast() {
+
     const revenues = [];
+
     for (let i = 0; i < eventsPast.length; i++) {
         const assistance = eventsPast[i].assistance;
         if (typeof assistance == 'number') {
@@ -79,7 +79,6 @@ function revenuesPast() {
     return revenues;
 }
 
-/*--------------- process upComing  view the information --------------- */
 function comingName() {
 
     const categoryComing = document.getElementById('categoryComing');
@@ -91,15 +90,17 @@ function comingName() {
         row.innerHTML = `
                 <td style="text-align: center;" >${eventsComing[i].name}</td>
                 <td style="text-align: center;" >${revenuesData[i]}</td>
-                <td style="text-align: center;" >${percentages[i]} %</td>   
+                <td style="text-align: center;" >${percentages[i]} %</td>
                 `
         categoryComing.appendChild(row)
     }
 
 }
-/*---------- estimate --------------*/
+
 function revenues() {
+
     const revenues = [];
+
     for (let i = 0; i < eventsComing.length; i++) {
         const estimate = eventsComing[i].estimate;
         if (typeof estimate == 'number') {
@@ -112,9 +113,12 @@ function revenues() {
     }
     return revenues;
 }
-/*---------- percentage attendance --------------*/
+
+
 function percentageAttendance() {
+
     const percentages = [];
+
     for (let i = 0; i < eventsComing.length; i++) {
         const capacity = eventsComing[i].capacity;
         const estimate = eventsComing[i].estimate
@@ -130,23 +134,23 @@ function percentageAttendance() {
     return percentages;
 }
 
-/*---- -------*/
+
 function higgestAttendance() {
     const Higgest = document.getElementById('Higgest');
 
-   
     for (let i = 0; i < eventsComing.length; i++) {
         const row = document.createElement('tr');
         row.innerHTML = `
                 <td style="text-align: center;" ></td>
                 <td style="text-align: center;" ></td>
-                <td style="text-align: center;" ></td>   
+                <td style="text-align: center;" ></td>
                 `
         Higgest.appendChild(row)
     }
 }
 
 function namePercentagePast (eventsPast){
+
     let epPercetange = eventsPast.map((each)=> {
 
         const capacity = each.capacity
@@ -158,9 +162,5 @@ function namePercentagePast (eventsPast){
     epPercetange.sort((a, b) => b.porcentage - a.porcentage)
 
     return epPercetange;
- 
+
 }
-
-
-
-
