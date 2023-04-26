@@ -8,7 +8,7 @@ async function fecthApi() {
     try {
         let response = await fetch(url);
         response = await response.json();
-        // console.log(response);
+        console.log(response.response);
 
         date = response.date
         // console.log(date);
@@ -150,57 +150,56 @@ function comingName() {
   }
 /* SECTION 3: Past Events statictic by name (TO-DO: category) */
 
-/* function aux 1 */
-function percentagePast() {
+/* function aux 1: porcentaje de asistencia y ganancia*/
+function sumsPast() {
 
-    const percentages = [];
-
-    for (let i = 0; i < eventsPast.length; i++) {
-        const capacity = eventsPast[i].capacity;
-        const assistance = eventsPast[i].assistance
-        // Valida que assistance y capacity sean números antes de calcular el porcentaje
-        if (typeof capacity == 'number') {
-            const percentageAtte = ((assistance / capacity) * 100).toFixed(2);
-            percentages.push(percentageAtte);
-        } else {
-            percentages.push('-');
-        }
-
-    }
-    return percentages;
-}
-
-/* function aux 2 */
-function revenuesPast() {
-
-    const revenues = [];
+    const answer = [];
+    const categories = [];
+    const totalAsistencia = eventsPast.reduce((acum, valor) => {
+        let sum = acum
+        sum = sum + valor.assistance
+        return sum
+    }, 0);
+    console.log(totalAsistencia);
 
     for (let i = 0; i < eventsPast.length; i++) {
-        const assistance = eventsPast[i].assistance;
-        if (typeof assistance == 'number') {
-            const totalAssitence = assistance;
-            revenues.push(totalAssitence)
-        } else {
-            revenues.push('-');
-        }
+        let category = eventsPast[i].category;
 
+        //ganancia
+        let assistance = eventsPast[i].assistance;
+        let price = eventsPast[i].price;
+        let totalRevenue = assistance * price;
+
+        // porcentaje de asistencia
+        let capacity = eventsPast[i].capacity;
+        let percentageAtte = Number(((assistance / capacity) * 100).toFixed(2));
+
+        //agregando
+        if (!categories.includes(category)) {
+            categories.push(category);
+            answer.push({category, totalRevenue, percentageAtte});
+        } else {
+            let categoryData = answer.findIndex((row) => row.category === category);
+            answer[categoryData].totalRevenue = answer[categoryData].totalRevenue + totalRevenue;
+            answer[categoryData].percentageAtte = answer[categoryData].percentageAtte + (percentageAtte / totalAsistencia);
+        }
     }
-    return revenues;
+    return answer;
 }
 
 /* main function 3 */
 function pastName() {
 
     const categoryPast = document.getElementById('categoryPast');
-    const percentage = percentagePast();
-    const revenuesDataPast = revenuesPast();
+    const arraysums = sumsPast();
 
-    for (let i = 0; i < eventsPast.length; i++) {
+    for (let i = 0; i < arraysums.length; i++) {
+        console.log(arraysums[i])
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td style="text-align: center;" >${eventsPast[i].name}</td>
-            <td style="text-align: center;" >${revenuesDataPast[i]}</td>
-            <td style="text-align: center;" >${percentage[i]} %</td>
+            <td style="text-align: center;" >${arraysums[i].category}</td>
+            <td style="text-align: center;" >${arraysums[i].totalRevenue}</td>
+            <td style="text-align: center;" >${arraysums[i].percentageAtte}%</td>
             `
         categoryPast.appendChild(row)
     }
