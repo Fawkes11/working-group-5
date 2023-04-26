@@ -8,7 +8,7 @@ async function fecthApi() {
     try {
         let response = await fetch(url);
         response = await response.json();
-        console.log(response.response);
+        // console.log(response.response);
 
         date = response.date
         // console.log(date);
@@ -160,7 +160,6 @@ function sumsPast() {
         sum = sum + valor.assistance
         return sum
     }, 0);
-    console.log(totalAsistencia);
 
     for (let i = 0; i < eventsPast.length; i++) {
         let category = eventsPast[i].category;
@@ -195,7 +194,6 @@ function pastName() {
     const arraysums = sumsPast();
 
     for (let i = 0; i < arraysums.length; i++) {
-        console.log(arraysums[i])
         const row = document.createElement('tr');
         row.innerHTML = `
             <td style="text-align: center;" >${arraysums[i].category}</td>
