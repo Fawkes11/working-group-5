@@ -8,14 +8,14 @@ async function fecthApi() {
     try {
         let response = await fetch(url);
         response = await response.json();
-        console.log(response);
+        // console.log(response);
 
         date = response.date
-        console.log(date);
+        // console.log(date);
 
-        eventsPast = response.response.filter((item) => item.date <= date)
+        eventsPast = response.response.filter((item) => item.date < date)
         eventsComing = response.response.filter((item) => item.date >= date)
-        console.log(eventsComing);
+        // console.log(eventsComing);
 
         // section 1
         let arrayPercentage = namePercentagePast(eventsPast);
@@ -31,7 +31,7 @@ async function fecthApi() {
         pastName(eventsPast)
 
     } catch (error) {
-        console.error(error);
+        console.log(error);
     }
 }
 
