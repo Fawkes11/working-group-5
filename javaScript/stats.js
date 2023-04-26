@@ -80,74 +80,64 @@ function higgestAttendance(max, min, maxCap) {
 /* SECTION 2: Upcoming Events statictic by name (TO-DO: category) */
 
 /* function aux 1 */
-function percentageAttendance() {
-
-    const percentages = [];
+function sumAttendance() {
+    
+    const answer = [];
+    const categories = [];
+    const totalAsistencia = eventsComing.reduce((acum, valor) => {
+        let sum = acum
+        sum = sum + valor.estimate
+        return sum
+    }, 0);
 
     for (let i = 0; i < eventsComing.length; i++) {
-        const capacity = eventsComing[i].capacity;
-        const estimate = eventsComing[i].estimate
-        // Valida que assistance y capacity sean números antes de calcular el porcentaje
-        if (typeof capacity == 'number') {
-            const percentageAtte = ((estimate / capacity) * 100).toFixed(2);
-            percentages.push(percentageAtte);
+        let category = eventsComing[i].category;
+
+        //ganancia
+        let estimate = eventsComing[i].estimate;
+        let price = eventsComing[i].price;
+        let totalRevenue = estimate * price;
+
+        // porcentaje de asistencia
+        let capacity = eventsComing[i].capacity;
+        let percentageAtte = (estimate / capacity) * 100;
+    
+        //agregando
+        if (!categories.includes(category)) {
+            categories.push(category);
+            answer.push({category, totalRevenue, percentageAtte});
         } else {
-            percentages.push('-');
+            let categoryData = answer.findIndex((row) => row.category === category);
+            answer[categoryData].totalRevenue = answer[categoryData].totalRevenue + totalRevenue;
+            let aux = percentageAtte / totalAsistencia
+            answer[categoryData].percentageAtte = answer[categoryData].percentageAtte + aux;
         }
-
     }
-    return percentages;
+    return answer;
 }
 
-/* function aux 2 */
-function revenues() {
-
-    const revenues = [];
-
-    for (let i = 0; i < eventsComing.length; i++) {
-        const estimate = eventsComing[i].estimate;
-        const price = eventsComing[i].price;
-        
-            const totalEstimate = estimate* price
-            revenues.push(totalEstimate)
-       
-    }
-    return revenues;
-}
 
 /* main function section 2 */
 
 function comingName() {
     const categoryComing = document.getElementById('categoryComing');
-    const percentages = percentageAttendance();
-    const revenuesData = revenues();
-    const addedCategories = {};
-    const categoryAdd = {};
-  
-    for (let i = 0; i < eventsComing.length; i++) {
-      const category = eventsComing[i].category;
-      if (!addedCategories[category]) { // Si la categoría no se ha agregado aún
-        addedCategories[category] = true; // Marcar como agregada
+   
+    const sumEstimate = sumAttendance()
+
+    for (let i = 0; i < sumEstimate.length; i++) {
+        console.log(sumEstimate[i]);
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td style="text-align: center;" >${category}</td>
-            <td style="text-align: center;" >$ ${revenuesData[i]}</td>
-            <td style="text-align: center;" >${percentages[i]} %</td>
+            <td style="text-align: center;" >${sumEstimate[i].category}</td>
+            <td style="text-align: center;" >$ ${sumEstimate[i].totalRevenue}</td>
+            <td style="text-align: center;" >${sumEstimate[i].percentageAtte.toFixed(2)} %</td>
         `;
         categoryComing.appendChild(row);
-
-        if (!categoryAdd[category]) {
-            categoryAdd[category]={
-                revenueSum: 0,
-                percentageSum: 0
-            } 
-        }
-        categoryAdd[category].revenueSum += revenuesData[i];
-        categoryAdd[category].percentageSum += percentages[i]
-
       }
     }
-  }
+  
+
+
 /* SECTION 3: Past Events statictic by name (TO-DO: category) */
 
 /* function aux 1: porcentaje de asistencia y ganancia*/
@@ -197,7 +187,7 @@ function pastName() {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td style="text-align: center;" >${arraysums[i].category}</td>
-            <td style="text-align: center;" >${arraysums[i].totalRevenue}</td>
+            <td style="text-align: center;" >$ ${arraysums[i].totalRevenue}</td>
             <td style="text-align: center;" >${arraysums[i].percentageAtte.toFixed(2)}%</td>
             `
         categoryPast.appendChild(row)
