@@ -1,21 +1,16 @@
-// import { data } from "./data.js";
-
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
-// const event = data.eventos.find((card) => card.id == params.id);
-
 const id = params.id;
-console.log(id);
+
 let url = 'https://pro-talento.up.railway.app/api/amazing/' + id
 console.log(url);
+
 async function fecthApi(url) {
     try {
         let response = await fetch(url); //fecheo la api
         response = await response.json() // transformo la respuesta de la app en datos utilizables
-        console.log(response); // response es un objeto de 2 propiedades
-        console.log(response.success); // response 
-        console.log(response.response); // objeto con todos las propiedades del evento
-        let event = response.response   
+        // response es un objeto de 2 propiedades
+        let event = response.response
         const divImage = document.getElementById("card-img-detail");
         divImage.innerHTML = `<img src="${event.image}" class="img-fluid imagen_details rounded-start rounded" alt="Evento Imagen">`
 
@@ -27,7 +22,6 @@ async function fecthApi(url) {
         let eYear = eventDate.toLocaleString("default", { year: "numeric" });
         let eMonth = eventDate.toLocaleString("default", { month: "short" });
         let eDay = eventDate.toLocaleString("default", { day: "numeric" });
-
 
         const liDate = document.getElementById("card-date");
         liDate.innerHTML = `<b> Date:</b> ${eDay}-${eMonth}-${eYear}`;
@@ -55,4 +49,5 @@ async function fecthApi(url) {
     }
 
 }
+
 fecthApi(url);
