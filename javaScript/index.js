@@ -1,42 +1,43 @@
+/* FUNCTION: fetch API */
 async function fecthApi() {
   try {
     let url = `https://pro-talento.up.railway.app/api/amazing/`;
     let response = await fetch(url);
     response = await response.json();
-    console.log(response);
-    console.log(response.response);
+
     createCheckBoxes(response.response)
     printCards(response.response)
-    document.getElementById('buttonSearch').addEventListener('click', filteData)
-    console.log(document.querySelectorAll('.class_checks'))
-    document.querySelectorAll('.class_checks').forEach((each) =>each.addEventListener('click', filteData))
+
+    document.getElementById('buttonSearch').addEventListener('click', (event) => {
+      event.preventDefault();
+      filterData()
+    })
+    document.querySelectorAll('.class_checks').forEach((each) =>each.addEventListener('click', filterData))
 
   } catch (error) {
-    console.error(error)
+    console.log(error)
   }
 }
+
 fecthApi()
-async function filteData() {
+
+/* FUNCTION: Filtro de eventos */
+async function filterData() {
   try {
-    // console.log('hola prueba');
     let texto = document.getElementById('searchInTitle').value.toLowerCase();
     let checks = Array.from(document.querySelectorAll('.class_checks:checked')).map(each => each.value);
-    // console.log(checks);
     let url = `https://pro-talento.up.railway.app/api/amazing/?name=${texto}&category=${checks.join(',')}`;
     let response = await fetch(url);
     response = await response.json();
-    // console.log(response.response);
     if (response.response.length == 0) {
       printEmpty()
     } else {
       printCards(response.response)
     }
   } catch (error) {
-    console.error(error)
+    console.log(error)
   }
 }
-
-/* ---------- Creación de CARDS ---------- */
 
 /* FUNCTION: Retorna UN div para cada evento
  * Recibe un id que será el identificador del evento
@@ -80,16 +81,11 @@ function printCards(array) {
   }
 }
 
-// printCards(arrayEventos)
-
-/* ---------- Creación de Checkboxes ---------- */
+/* FUNCTION: Creación de Checkboxes */
 function createCheckBoxes(arrayEventos) {
 
-
   let categories = [... new Set(arrayEventos.map(evento => evento.category))]
-  // console.log(categories)
   let categories_check = categories.map(category => { return { id: category.toLowerCase().replaceAll(" ", ""), label: category } })
-  // console.log(categories_check)
   const containerCategories = document.getElementById('category');
 
   categories_check.forEach(category => {
@@ -109,8 +105,8 @@ function createCheckBoxes(arrayEventos) {
     div.appendChild(label);
     containerCategories.appendChild(div);
   })
+
 }
-/* ---------- Filtro de Checkboxes y de Input Text  ---------- */
 
 /* FUNCTION: Pinta mensaje de eventos vacíos */
 function printEmpty() {
