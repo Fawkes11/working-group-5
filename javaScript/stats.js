@@ -172,7 +172,7 @@ function sumsPast() {
 
         // porcentaje de asistencia
         let capacity = eventsPast[i].capacity;
-        let percentageAtte = Number(((assistance / capacity) * 100).toFixed(2));
+        let percentageAtte = (assistance / capacity) * 100;
 
         //agregando
         if (!categories.includes(category)) {
@@ -181,7 +181,8 @@ function sumsPast() {
         } else {
             let categoryData = answer.findIndex((row) => row.category === category);
             answer[categoryData].totalRevenue = answer[categoryData].totalRevenue + totalRevenue;
-            answer[categoryData].percentageAtte = answer[categoryData].percentageAtte + (percentageAtte / totalAsistencia);
+            let aux = percentageAtte / totalAsistencia
+            answer[categoryData].percentageAtte = answer[categoryData].percentageAtte + aux;
         }
     }
     return answer;
@@ -199,7 +200,7 @@ function pastName() {
         row.innerHTML = `
             <td style="text-align: center;" >${arraysums[i].category}</td>
             <td style="text-align: center;" >${arraysums[i].totalRevenue}</td>
-            <td style="text-align: center;" >${arraysums[i].percentageAtte}%</td>
+            <td style="text-align: center;" >${arraysums[i].percentageAtte.toFixed(2)}%</td>
             `
         categoryPast.appendChild(row)
     }
