@@ -1,8 +1,50 @@
-import { data } from "./data.js";
+const url = `https://pro-talento.up.railway.app/api/amazing/`;
 
-const currentDate = data.fechaActual;
-const events = data.eventos;
-const upComingEvents = events.filter((item) => item.date >= currentDate);
+let currentDate = "";
+let events = [];
+
+async function fecthApi() {
+  try {
+    let response = await fetch(url);
+    let data = await response.json();
+
+    currentDate = data.date;
+    events = data.response.filter((item) => item.date >= currentDate);
+    
+    createCheckBoxes(events);
+    renderCards("upcomingCardsSection", events);
+    
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+fecthApi();
+
+async function filterData() {
+  try {
+    const textValue = document.getElementById("textsearch").value.toLowerCase();
+    const checkBoxes = [
+      ...document.querySelectorAll("input[type=checkbox]:checked"),
+    ].map((checkbox) => checkbox.value.toLowerCase());
+
+    const url = `https://pro-talento.up.railway.app/api/amazing/?name=${textValue}&category=${checkBoxes.join(
+      ","
+    )}`;
+    let response = await fetch(url);
+    let data = await response.json();
+
+    events = data.response.filter((item) => item.date >= currentDate);
+
+    if (events.length > 0) {
+      renderCards("upcomingCardsSection", events);
+    } else {
+      renderEmpty("upcomingCardsSection");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 function renderEmpty(id) {
   const container = document.getElementById(id);
@@ -12,28 +54,6 @@ function renderEmpty(id) {
   THE ENTERED TITLE DOES NOT HAVE CHARACTERISTICS TO DISPLAY, ENTER ANOTHER TEXT FIELD</div>`;
 }
 
-function filterCards() {
-  const textValue = document.getElementById("textsearch").value.toLowerCase();
-  const checkBoxes = [
-    ...document.querySelectorAll("input[type=checkbox]:checked"),
-  ].map((checkbox) => checkbox.value.toLowerCase());
-
-  const filteredEvents = upComingEvents.filter((item) => {
-    
-    return (
-      item.name.toLowerCase().includes(textValue) &&
-      (checkBoxes.length === 0 ||
-        checkBoxes.includes(item.category.toLowerCase()))
-    );
-  });
-
-  if (filteredEvents.length > 0) {
-    renderCards("upcomingCardsSection", filteredEvents);
-  } else {
-    renderEmpty("upcomingCardsSection");
-  }
-}
-
 function renderCards(idDiv, data) {
   document.getElementById(idDiv).innerHTML = "";
   data.forEach((item) => {
@@ -41,7 +61,6 @@ function renderCards(idDiv, data) {
     document.getElementById(idDiv).appendChild(card);
   });
 }
-
 
 function createCard({ id, image, name, price, description }) {
   let card = document.createElement("div");
@@ -59,8 +78,6 @@ function createCard({ id, image, name, price, description }) {
                                 <a href="../pages/details.html?id=${id}" style=" font-family: 'Lobster', cursive;">Ver más</a>
                             </div>
                         </div>   
-
-
                        
                     `;
   return card;
@@ -68,21 +85,50 @@ function createCard({ id, image, name, price, description }) {
 
 
 
-/* assign the filteredEvents function to each checkbox */
-document
-  .querySelectorAll("input[type=checkbox]")
-  .forEach((check) => check.addEventListener("click", filterCards));
+
+function createCheckBoxes(events) {
+  /* Node of the checkbox container is called */
+  const checkboxContainer = document.getElementById("checkboxContainer");
+
+  /* A SET is used to filter the single categories and convert them into an array. */
+  const categories = [...new Set(events.map((e) => e.category))];
+
+  /* An array of objects is created to improve checkbox creation */
+  let categoriesLabels = categories.map((category) => {
+    return { id: category.toLowerCase().replaceAll(" ", ""), label: category };
+  });
+
+  /* The array is traversed to create the checkboxes */
+  categoriesLabels.forEach((category) => {
+    /* The checkbox is created and the necessary attributes are added for its representation */
+    const checkbox = document.createElement("input");
+    checkbox.setAttribute("type", "checkbox");
+    checkbox.setAttribute("id", category.id);
+    checkbox.setAttribute("value", category.id);
+    checkbox.classList.add("checkbox");
+    checkbox.addEventListener("click", filterData);
+
+    /* The label is created and the necessary attributes are added for its representation */
+    const label = document.createElement("label");
+    label.setAttribute("for", category.id);
+    label.textContent = category.label;
+    label.classList.add("ms-1");
+
+    /* a div is created to add the checkbox and its label */
+    const div = document.createElement("div");
+    div.appendChild(checkbox);
+    div.appendChild(label);
+
+    /* the div is added to the checkbox container that was called at the start of the function  */
+    checkboxContainer.appendChild(div);
+  });
+}
 
 /* asignar la funcion filteredEvents al boton buscar */
 document.getElementById("search").addEventListener("click", (e) => {
   e.preventDefault();
-  filterCards();
+  filterData();
 });
-
-
-
-renderCards("upcomingCardsSection", upComingEvents);
-
 
 
 let swiper = new Swiper(".swiper-container", {
