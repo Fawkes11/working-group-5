@@ -7,41 +7,38 @@ async function fecthApi() {
   try {
     let response = await fetch(url);
     response = await response.json();
-    console.log(response.date);
-    // console.log(response.response);
+
     date = response.date;
     arrayPast = response.response.filter((item) => item.date <= date);
 
-    console.log(arrayPast);
     createCheckBoxes(arrayPast)
     cardFilter(arrayPast)
+
     document.getElementById('buttonSearch').addEventListener('click', filterData)
     document.querySelectorAll('.class_checks').forEach((each) => each.addEventListener('click', filterData))
 
-
-
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 }
+
 fecthApi()
 
 async function filterData() {
   try {
     let texto = document.getElementById('searchText').value.toLowerCase();
     let checks = Array.from(document.querySelectorAll('.class_checks:checked')).map(each => each.value);
-    console.log(checks);
+    // console.log(checks);
     let url = `https://pro-talento.up.railway.app/api/amazing/?name=${texto}&category=${checks.join(',')}`;
     let response = await fetch(url);
     response = await response.json();
-    // console.log(response.response);
     if (response.response.length == 0) {
       printEmptyPast()
     } else {
       cardFilter(response.response)
     }
   } catch (error) {
-    console.error(error)
+    console.log(error)
   }
 
 }
@@ -52,7 +49,7 @@ function createLetters(id, objetoData) {
   div.id = id;
   div.className = 'swiper-slide'
 
-  div.innerHTML = ` 
+  div.innerHTML = `
       <img  src="${objetoData.image}" alt="">
       <div class="card-description">
           <div class="card-title">
@@ -67,7 +64,7 @@ function createLetters(id, objetoData) {
           <h2>${objetoData.price}</h2>
               <a href="../pages/details.html?id=${objetoData.id}" style=" font-family: 'Lobster', cursive;">Ver más</a>
           </div>
-      </div>  
+      </div>
 `
   return div
 }
