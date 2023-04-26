@@ -17,6 +17,10 @@ async function fecthApi() {
         comingName(eventsComing)
         higgestAttendance(eventsPast)
         let arrayPercentage = namePercentagePast(eventsPast);
+        let min = arrayPercentage[arrayPercentage.length-1]
+        let max = arrayPercentage[0]
+        
+        
     } catch (error) {
         console.error(error);
     }
