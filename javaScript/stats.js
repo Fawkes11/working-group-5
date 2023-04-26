@@ -18,10 +18,11 @@ async function fecthApi() {
         console.log(eventsComing);
 
         // section 1
-        higgestAttendance(eventsPast)
         let arrayPercentage = namePercentagePast(eventsPast);
         let min = arrayPercentage[arrayPercentage.length-1]
         let max = arrayPercentage[0]
+        let maxCap = maxByCapacity(response.response)
+        higgestAttendance(max, min, maxCap)
 
         // section 2
         comingName(eventsComing)
@@ -55,18 +56,24 @@ function namePercentagePast (eventsPast){
 
 }
 
+/* function aux ordering by capacity */
+function maxByCapacity(allEvents){
+    let ordered = allEvents.sort((a, b) => b.capacity - a.capacity)
+    return ordered[0]
+}
+
 /* function aux for show data */
-function higgestAttendance() {
-    const Higgest = document.getElementById('Higgest');
+function higgestAttendance(max, min, maxCap) {
+    const higgest = document.getElementById('Higgest');
 
     for (let i = 0; i < eventsComing.length; i++) {
         const row = document.createElement('tr');
         row.innerHTML = `
-                <td style="text-align: center;" ></td>
-                <td style="text-align: center;" ></td>
-                <td style="text-align: center;" ></td>
+                <td style="text-align: center;" >${max.name} with ${max.porcentage}%</td>
+                <td style="text-align: center;" >${min.name} with ${min.porcentage}%</td>
+                <td style="text-align: center;" >${maxCap.name} with ${maxCap.capacity}</td>
                 `
-        Higgest.appendChild(row)
+        higgest.appendChild(row)
     }
 }
 
