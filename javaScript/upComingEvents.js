@@ -10,10 +10,10 @@ async function fecthApi() {
 
     currentDate = data.date;
     events = data.response.filter((item) => item.date >= currentDate);
-    
+
     createCheckBoxes(events);
     renderCards("upcomingCardsSection", events);
-    
+
   } catch (err) {
     console.log(err);
   }
@@ -77,14 +77,10 @@ function createCard({ id, image, name, price, description }) {
                                 <h2>${price}</h2>
                                 <a href="../pages/details.html?id=${id}" style=" font-family: 'Lobster', cursive;">Ver más</a>
                             </div>
-                        </div>   
-                       
+                        </div>
                     `;
   return card;
 }
-
-
-
 
 function createCheckBoxes(events) {
   /* Node of the checkbox container is called */
