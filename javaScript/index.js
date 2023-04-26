@@ -1,16 +1,40 @@
+async function fecthApi() {
+  try {
+    let url = `https://pro-talento.up.railway.app/api/amazing/`;
+    let response = await fetch(url);
+    response = await response.json();
+    console.log(response);
+    console.log(response.response);
+    createCheckBoxes(response.response)
+    printCards(response.response)
+    document.getElementById('buttonSearch').addEventListener('click', filteData)
+    console.log(document.querySelectorAll('.class_checks'))
+    document.querySelectorAll('.class_checks').forEach((each) =>each.addEventListener('click', filteData))
 
-import { data } from './data.js'
-
-/* ---------- Array principal ---------- */
-
-let arrayEventos = [];
-
-for (let i = 0; i < data.eventos.length; i++) {
-
-  arrayEventos.push(data.eventos[i]);
-
+  } catch (error) {
+    console.error(error)
+  }
 }
-// console.log(arrayEventos);
+fecthApi()
+async function filteData() {
+  try {
+    // console.log('hola prueba');
+    let texto = document.getElementById('searchInTitle').value.toLowerCase();
+    let checks = Array.from(document.querySelectorAll('.class_checks:checked')).map(each => each.value);
+    // console.log(checks);
+    let url = `https://pro-talento.up.railway.app/api/amazing/?name=${texto}&category=${checks.join(',')}`;
+    let response = await fetch(url);
+    response = await response.json();
+    // console.log(response.response);
+    if (response.response.length == 0) {
+      printEmpty()
+    } else {
+      printCards(response.response)
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 /* ---------- Creación de CARDS ---------- */
 
@@ -49,41 +73,43 @@ function printCards(array) {
 
   for (let i = 0; i < array.length; i++) {
 
-    let id = `card${i+1}`
+    let id = `card${i + 1}`
     let div = createEventCard(id, array[i]);
     document.getElementById('section').appendChild(div)
 
   }
 }
 
-printCards(arrayEventos)
+// printCards(arrayEventos)
 
 /* ---------- Creación de Checkboxes ---------- */
+function createCheckBoxes(arrayEventos) {
 
-let categories = [... new Set(arrayEventos.map(evento => evento.category))]
-// console.log(categories)
-let categories_check = categories.map(category => {return {id: category.toLowerCase().replaceAll(" ", ""), label: category }})
-// console.log(categories_check)
-const containerCategories = document.getElementById('category');
 
-categories_check.forEach(category => {
-  // create input type check
-  const input_check = document.createElement('input');
-  input_check.setAttribute('type', 'checkbox');
-  input_check.setAttribute('id', category.id);
-  input_check.setAttribute('value', category.label);
-  input_check.classList.add("class_checks")
-  // create label
-  const label = document.createElement('label');
-  label.setAttribute('for', category.id);
-  label.textContent = category.label;
-  // create div
-  const div = document.createElement('div');
-  div.appendChild(input_check);
-  div.appendChild(label);
-  containerCategories.appendChild(div);
-})
+  let categories = [... new Set(arrayEventos.map(evento => evento.category))]
+  // console.log(categories)
+  let categories_check = categories.map(category => { return { id: category.toLowerCase().replaceAll(" ", ""), label: category } })
+  // console.log(categories_check)
+  const containerCategories = document.getElementById('category');
 
+  categories_check.forEach(category => {
+    // create input type check
+    const input_check = document.createElement('input');
+    input_check.setAttribute('type', 'checkbox');
+    input_check.setAttribute('id', category.id);
+    input_check.setAttribute('value', category.label);
+    input_check.classList.add("class_checks")
+    // create label
+    const label = document.createElement('label');
+    label.setAttribute('for', category.id);
+    label.textContent = category.label;
+    // create div
+    const div = document.createElement('div');
+    div.appendChild(input_check);
+    div.appendChild(label);
+    containerCategories.appendChild(div);
+  })
+}
 /* ---------- Filtro de Checkboxes y de Input Text  ---------- */
 
 /* FUNCTION: Pinta mensaje de eventos vacíos */
@@ -96,39 +122,6 @@ function printEmpty() {
     <img  src="./images/logo-warning-message.png" alt="">
     THE ENTERED TITLE DOES NOT HAVE CHARACTERISTICS TO DISPLAY, ENTER ANOTHER TEXT FIELD</div>`;
 }
-
-/* FUNCTION: filtra los eventos según checks e input */
-function filters() {
-  let texto = document.getElementById('searchInTitle').value.toLowerCase();
-  // console.log(texto);
-  let checks = Array.from(document.querySelectorAll('.class_checks:checked')).map(each => each.value);
-  // console.log(checks);
-  let filtro = arrayEventos.filter(evento => {
-    return (evento.name.toLowerCase().includes(texto)) && (checks.length === 0 || checks.includes(evento.category))
-  });
-  console.log(filtro);
-  if (filtro.length>0) {
-    printCards(filtro);
-  } else {
-    printEmpty();
-  }
-}
-
-/* Agrega filtro a checks */
-categories_check.forEach(category => {
-  const checkbox = document.getElementById(category.id);
-  checkbox.addEventListener('click', () => {
-    filters();
-  })
-})
-
-/* Agrega filtro a input */
-const searchButton = document.getElementById('buttonSearch');
-searchButton.addEventListener('click', (event) => {
-  event.preventDefault();
-  filters();
-})
-
 
 /* ---------- Gestión de complemento para carousel ---------- */
 let swiper = new Swiper('.swiper-container', {
