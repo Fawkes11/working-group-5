@@ -18,7 +18,6 @@ async function fecthApi() {
 fecthApi()
 async function filteData() {
   try {
-    
     // console.log('hola prueba');
     let texto = document.getElementById('searchInTitle').value.toLowerCase();
     let checks = Array.from(document.querySelectorAll('.class_checks:checked')).map(each => each.value);
@@ -123,9 +122,6 @@ function printEmpty() {
     <img  src="./images/logo-warning-message.png" alt="">
     THE ENTERED TITLE DOES NOT HAVE CHARACTERISTICS TO DISPLAY, ENTER ANOTHER TEXT FIELD</div>`;
 }
-
-
-
 
 /* ---------- Gestión de complemento para carousel ---------- */
 let swiper = new Swiper('.swiper-container', {

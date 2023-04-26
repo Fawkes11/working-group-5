@@ -1,12 +1,8 @@
-import { data } from "./data.js";
+// import { data } from "./data.js";
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 // const event = data.eventos.find((card) => card.id == params.id);
-
-
-
-/*------clase -------*/
 
 const id = params.id;
 console.log(id);
@@ -19,11 +15,7 @@ async function fecthApi(url) {
         console.log(response); // response es un objeto de 2 propiedades
         console.log(response.success); // response 
         console.log(response.response); // objeto con todos las propiedades del evento
-        let event = response.response
-    
-        // let { image, description, date, assistance, capacity, place } = response.response;
-
-        
+        let event = response.response   
         const divImage = document.getElementById("card-img-detail");
         divImage.innerHTML = `<img src="${event.image}" class="img-fluid imagen_details rounded-start rounded" alt="Evento Imagen">`
 
