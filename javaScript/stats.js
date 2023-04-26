@@ -16,7 +16,7 @@ async function fecthApi() {
         pastName(eventsPast)
         comingName(eventsComing)
         higgestAttendance(eventsPast)
-
+        let arrayPercentage = namePercentagePast(eventsPast);
     } catch (error) {
         console.error(error);
     }
@@ -41,14 +41,13 @@ function pastName() {
         categoryPast.appendChild(row)
     }
 }
+
 /*-------- percentage past ----------*/
 function percentagePast() {
     const percentages = [];
     for (let i = 0; i < eventsPast.length; i++) {
         const capacity = eventsPast[i].capacity;
         const assistance = eventsPast[i].assistance
-        // console.log (` esttimate : ${estimate},  capacity: ${capacity}`);
-
         // Valida que assistance y capacity sean números antes de calcular el porcentaje
         if (typeof capacity == 'number') {
             const percentageAtte = ((assistance / capacity) * 100).toFixed(2);
@@ -115,8 +114,6 @@ function percentageAttendance() {
     for (let i = 0; i < eventsComing.length; i++) {
         const capacity = eventsComing[i].capacity;
         const estimate = eventsComing[i].estimate
-        // console.log (` esttimate : ${estimate},  capacity: ${capacity}`);
-
         // Valida que assistance y capacity sean números antes de calcular el porcentaje
         if (typeof capacity == 'number') {
             const percentageAtte = ((estimate / capacity) * 100).toFixed(2);
@@ -132,8 +129,8 @@ function percentageAttendance() {
 /*---- -------*/
 function higgestAttendance() {
     const Higgest = document.getElementById('Higgest');
-    
 
+   
     for (let i = 0; i < eventsComing.length; i++) {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -145,17 +142,21 @@ function higgestAttendance() {
     }
 }
 
-// function Higgest (){
-//     const Highest = 0;
+function namePercentagePast (eventsPast){
+    let epPercetange = eventsPast.map((each)=> {
 
-//     for (let i = 0; i < eventsPast.length; i++) {
-//      let attendancePercentage = (eventsPast[i].assistance / eventsPast[i].capacity)*100;
-     
-//      if (attendancePercentage > Highest) {
-//         Highest = attendancePercentage;
-//      }
+        const capacity = each.capacity
+        const assistance = each.assistance
+        const percentageAtte = ((assistance / capacity) * 100).toFixed(2);
+        return {name:each.name, porcentage:percentageAtte}
 
-//     }
-//     return  ;
+    })
+    epPercetange.sort((a, b) => b.porcentage - a.porcentage)
 
-// }
+    return epPercetange;
+ 
+}
+
+
+
+
