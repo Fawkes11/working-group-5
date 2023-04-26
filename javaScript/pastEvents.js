@@ -1,24 +1,48 @@
-import { data } from './data.js'
+let url = `https://pro-talento.up.railway.app/api/amazing/`;
 
-const fechaActual = data.fechaActual
-let arrayPastEvents = [];
+let date = '';
+let arrayPast = [];
 
-for (let i = 0; i < data.eventos.length; i++) {
+async function fecthApi() {
+  try {
+    let response = await fetch(url);
+    response = await response.json();
+    console.log(response.date);
+    // console.log(response.response);
+    date = response.date;
+    arrayPast = response.response.filter((item) => item.date <= date);
 
-  if (data.eventos[i].date <= fechaActual) {
-    arrayPastEvents.push(data.eventos[i]);
-  } else {
-    // console.log('la fecha es mayor a la fecha actual de registro');
+    console.log(arrayPast);
+    createCheckBoxes(arrayPast)
+    cardFilter(arrayPast)
+    document.getElementById('buttonSearch').addEventListener('click', filterData)
+    document.querySelectorAll('.class_checks').forEach((each) => each.addEventListener('click', filterData))
+
+
+
+  } catch (error) {
+    console.error(error);
   }
-
 }
-// console.log(arrayPastEvents);
+fecthApi()
 
-for (let i = 0; i < arrayPastEvents.length; i++) {
-
-  let id = `card${i + 1}`
-  let div = createLetters(id, arrayPastEvents[i]);
-  document.getElementById('section').appendChild(div)
+async function filterData() {
+  try {
+    let texto = document.getElementById('searchText').value.toLowerCase();
+    let checks = Array.from(document.querySelectorAll('.class_checks:checked')).map(each => each.value);
+    console.log(checks);
+    let url = `https://pro-talento.up.railway.app/api/amazing/?name=${texto}&category=${checks.join(',')}`;
+    let response = await fetch(url);
+    response = await response.json();
+    // console.log(response.response);
+    if (response.response.length == 0) {
+      printEmptyPast()
+    } else {
+      cardFilter(response.response)
+    }
+  } catch (error) {
+    console.error(error)
+  }
 
 }
 
@@ -48,7 +72,92 @@ function createLetters(id, objetoData) {
   return div
 }
 
+/*----- filter text search--------*/
+const searchButton = document.getElementById('buttonSearch');
+const searchInput = document.getElementById('searchText')
 
+searchButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  console.log(searchInput.value);
+  filterByText(arrayPastEvents)
+})
+
+/*----------------- filter by text and category too, if one  category check the search only filter this category ----------- */
+function filterByText(arrayPastEvents) {
+  const text = searchInput.value.toLowerCase();
+
+  //Filtrar eventos por categoría seleccionada
+  let filteredEvents = arrayPastEvents;
+  if (selectedCategories.length > 0) {
+    filteredEvents = filteredEvents.filter(event => {
+      return selectedCategories.some(category => event.category.toLowerCase().includes(category.toLowerCase()));
+    });
+  }
+
+  // Filtrar eventos por texto
+  filteredEvents = filteredEvents.filter(event => event.name.toLowerCase().includes(text));
+
+  console.log(filteredEvents);
+  cardFilter(filteredEvents);
+
+}
+
+function printEmptyPast() {
+  const messageCard = document.getElementById('section');
+  messageCard.innerHTML = `
+    <div class="alert alert-danger" role="alert" style="display:flex; justify-content:center; padding:20px; margin:5px 20px 0px 20px font-family: 'Secular One', sans-serif;" >
+    <img  src="../images/logo-warning-message.png" alt="">
+    THE ENTERED TITLE DOES NOT HAVE CHARACTERISTICS TO DISPLAY, ENTER ANOTHER TEXT FIELD</div>`;
+  return;
+}
+
+/*----function card filter view search------*/
+function cardFilter(arrayPastEvents) {
+  const section = document.getElementById('section');
+  section.innerHTML = '';
+
+  for (let i = 0; i < arrayPastEvents.length; i++) {
+    let id = `card${i + 1}`
+    let div = createLetters(id, arrayPastEvents[i]);
+    document.getElementById('section').appendChild(div)
+  }
+}
+
+function createCheckBoxes(arrayPastEvents) {
+  /*---- category checkbox view ------ */
+  const containerCategory = document.getElementById('cateogry');
+  let categories = [... new Set(arrayPastEvents.map(evento => evento.category))]
+  // console.log(categories)
+  let category = categories.map(category => { return { id: category.toLowerCase().replaceAll(" ", ""), label: category } })
+
+
+  /*------view checkbox in html ---------*/
+  category.forEach(category => {
+    const checkbox = document.createElement('input');
+    checkbox.setAttribute('type', 'checkbox');
+    checkbox.setAttribute('id', category.id);
+    checkbox.setAttribute('value', category.label);
+
+    checkbox.classList.add("class_checks")
+
+
+    /*------view card check checkbox------*/
+    checkbox.addEventListener('click',filterData)
+    // console.log(checkbox);
+
+    const label = document.createElement('label');
+    label.setAttribute('for', category.id);
+    label.textContent = category.label;
+
+    const div = document.createElement('div');
+
+    div.appendChild(checkbox);
+    div.appendChild(label);
+    containerCategory.appendChild(div);
+  })
+}
+
+/*-------------- cards swiper carousel ------------------------*/ 
 
 let swiper = new Swiper('.swiper-container', {
   navigation: {
@@ -83,149 +192,3 @@ let swiper = new Swiper('.swiper-container', {
     },
   }
 });
-
-/*----- filter text search--------*/
-const searchButton = document.getElementById('buttonSearch');
-const searchInput = document.getElementById('searchText')
-
-searchButton.addEventListener('click', (event) => {
-  event.preventDefault();
-  console.log(searchInput.value);
-  filterByText(arrayPastEvents)
-})
-
-/*----------------- filter by text and category too, if one  category check the search only filter this category ----------- */
-function filterByText(arrayPastEvents) {
-  const text = searchInput.value.toLowerCase();
-
-  //Filtrar eventos por categoría seleccionada
-  let filteredEvents = arrayPastEvents;
-  if (selectedCategories.length > 0) {
-    filteredEvents = filteredEvents.filter(event => {
-      return selectedCategories.some(category => event.category.toLowerCase().includes(category.toLowerCase()));
-    });
-  }
-
-  // Filtrar eventos por texto
-  filteredEvents = filteredEvents.filter(event => event.name.toLowerCase().includes(text));
-
-  console.log(filteredEvents);
-  cardFilter(filteredEvents);
-
-  const messageCard = document.getElementById('section');
-
-  if (filteredEvents.length === 0) {
-    messageCard.innerHTML = `
-    
-    <div class="alert alert-danger" role="alert" style="display:flex; justify-content:center; padding:20px; margin:5px 20px 0px 20px font-family: 'Secular One', sans-serif;" >
-    <img  src="../images/logo-warning-message.png" alt="">
-    THE ENTERED TITLE DOES NOT HAVE CHARACTERISTICS TO DISPLAY, ENTER ANOTHER TEXT FIELD</div>`;
-    return;
-  }
-
-  // messageCard.innerHTML = '';
-}
-
-/*----function card filter view search------*/
-function cardFilter(arrayPastEvents) {
-  const section = document.getElementById('section');
-  section.innerHTML = '';
-
-  for (let i = 0; i < arrayPastEvents.length; i++) {
-    let id = `card${i + 1}`
-    let div = createLetters(id, arrayPastEvents[i]);
-    document.getElementById('section').appendChild(div)
-  }
-}
-
-/*-----view filter card caterogy checkbox---------*/
-function filterCategory(category) {
-  if (document.getElementById(category).checked) {
-    viewCategoryByFilter(arrayPastEvents, category);
-  } else {
-    removeCategory(category);
-    viewCategoryByFilter(arrayPastEvents, '');
-  }
-}
-
-
-
-function removeCategory(category) {
-  selectedCategories = selectedCategories.filter(selectedCategory => selectedCategory !== category.toLowerCase());
-}
-
-/*---- category checkbox view ------ */
-const containerCategory = document.getElementById('cateogry');
-const category = [
-  { id: 'food ', label: 'Food Fair' },
-  { id: 'museum', label: 'Museum' },
-  { id: 'costume', label: 'Costume Party' },
-  { id: 'music', label: 'Music Concert' },
-  { id: 'race', label: 'Race' },
-  { id: 'book', label: 'Book Exchange' },
-  { id: 'cinema', label: 'Cinema' },
-];
-
-/*------view checkbox in html ---------*/
-category.forEach(category => {
-  const checkbox = document.createElement('input');
-  checkbox.setAttribute('type', 'checkbox');
-  checkbox.setAttribute('id', category.id);
-
-
-  /*------view card check checkbox------*/
-  checkbox.onchange = () => {
-    filterCategory(category.id);
-  }
-
-  const label = document.createElement('label');
-  label.setAttribute('for', category.id);
-  label.textContent = category.label;
-
-  const div = document.createElement('div');
-
-  div.appendChild(checkbox);
-  div.appendChild(label);
-  containerCategory.appendChild(div);
-})
-
-/*-- cycle checkbox call ids ----*/
-
-category.forEach(category => {
-  const checkbox = document.getElementById(category.id);
-  checkbox.addEventListener('click', () => {
-    filterCategory(category.id);
-  })
-})
-
-
-/* -------funtion category filter------- */
-
-let selectedCategories = [];
-
-function viewCategoryByFilter(arrayPastEvents, category) {
-  const containerCategory = document.getElementById('section');
-  containerCategory.innerHTML = '';
-  // Verificamos si la categoría ya está en el array de categorías seleccionadas
-  if (!selectedCategories.includes(category) && category !== '') {
-    selectedCategories.push(category);
-  }
-
-  let filteredEvents = arrayPastEvents; 
-
-  if (selectedCategories.length > 0) {
-    filteredEvents = arrayPastEvents.filter(event => {
-      return selectedCategories.some(category => event.category.toLowerCase().includes(category.toLowerCase()));
-    });
-  }
-
-  console.log(selectedCategories); 
-
-  for (let i = 0; i < filteredEvents.length; i++) {
-    let id = `card${i + 1}`;
-    let div = createLetters(id, filteredEvents[i]);
-    document.getElementById('section').appendChild(div);
-  }
-}
-
-
