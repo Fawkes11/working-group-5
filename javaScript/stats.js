@@ -106,36 +106,48 @@ function revenues() {
 
     for (let i = 0; i < eventsComing.length; i++) {
         const estimate = eventsComing[i].estimate;
-        if (typeof estimate == 'number') {
-            const totalEstimate = estimate;
+        const price = eventsComing[i].price;
+        
+            const totalEstimate = estimate* price
             revenues.push(totalEstimate)
-        } else {
-            revenues.push('-');
-        }
-
+       
     }
     return revenues;
 }
 
 /* main function section 2 */
-function comingName() {
 
+function comingName() {
     const categoryComing = document.getElementById('categoryComing');
     const percentages = percentageAttendance();
     const revenuesData = revenues();
-
+    const addedCategories = {};
+    const categoryAdd = {};
+  
     for (let i = 0; i < eventsComing.length; i++) {
+      const category = eventsComing[i].category;
+      if (!addedCategories[category]) { // Si la categoría no se ha agregado aún
+        addedCategories[category] = true; // Marcar como agregada
         const row = document.createElement('tr');
         row.innerHTML = `
-                <td style="text-align: center;" >${eventsComing[i].name}</td>
-                <td style="text-align: center;" >${revenuesData[i]}</td>
-                <td style="text-align: center;" >${percentages[i]} %</td>
-                `
-        categoryComing.appendChild(row)
+            <td style="text-align: center;" >${category}</td>
+            <td style="text-align: center;" >$ ${revenuesData[i]}</td>
+            <td style="text-align: center;" >${percentages[i]} %</td>
+        `;
+        categoryComing.appendChild(row);
+
+        if (!categoryAdd[category]) {
+            categoryAdd[category]={
+                revenueSum: 0,
+                percentageSum: 0
+            } 
+        }
+        categoryAdd[category].revenueSum += revenuesData[i];
+        categoryAdd[category].percentageSum += percentages[i]
+
+      }
     }
-
-}
-
+  }
 /* SECTION 3: Past Events statictic by name (TO-DO: category) */
 
 /* function aux 1 */
