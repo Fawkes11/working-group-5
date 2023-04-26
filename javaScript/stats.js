@@ -64,17 +64,17 @@ function maxByCapacity(allEvents){
 
 /* function aux for show data */
 function higgestAttendance(max, min, maxCap) {
-    const higgest = document.getElementById('Higgest');
 
-    for (let i = 0; i < eventsComing.length; i++) {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-                <td style="text-align: center;" >${max.name} with ${max.porcentage}%</td>
-                <td style="text-align: center;" >${min.name} with ${min.porcentage}%</td>
-                <td style="text-align: center;" >${maxCap.name} with ${maxCap.capacity}</td>
-                `
-        higgest.appendChild(row)
-    }
+    const higgest = document.getElementById('Higgest');
+    const row = document.createElement('tr');
+
+    row.innerHTML = `
+            <td style="text-align: center;" >${max.name} with ${max.porcentage}%</td>
+            <td style="text-align: center;" >${min.name} with ${min.porcentage}%</td>
+            <td style="text-align: center;" >${maxCap.name} with capacity ${maxCap.capacity}</td>
+            `
+    higgest.appendChild(row);
+
 }
 
 /* SECTION 2: Upcoming Events statictic by name (TO-DO: category) */
