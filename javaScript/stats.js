@@ -71,7 +71,7 @@ function higgestAttendance(max, min, maxCap) {
     row.innerHTML = `
             <td style="text-align: center;" >${max.name} with ${max.porcentage}%</td>
             <td style="text-align: center;" >${min.name} with ${min.porcentage}%</td>
-            <td style="text-align: center;" >${maxCap.name} with capacity ${maxCap.capacity}</td>
+            <td style="text-align: center;" >${maxCap.name} with capacity ${maxCap.capacity.toLocaleString('es')}</td>
             `
     higgest.appendChild(row);
 
@@ -81,7 +81,7 @@ function higgestAttendance(max, min, maxCap) {
 
 /* function aux 1 */
 function sumAttendance() {
-    
+
     const answer = [];
     const categories = [];
     const totalAsistencia = eventsComing.reduce((acum, valor) => {
@@ -101,7 +101,7 @@ function sumAttendance() {
         // porcentaje de asistencia
         let capacity = eventsComing[i].capacity;
         let percentageAtte = (estimate / capacity) * 100;
-    
+
         //agregando
         if (!categories.includes(category)) {
             categories.push(category);
@@ -121,7 +121,7 @@ function sumAttendance() {
 
 function comingName() {
     const categoryComing = document.getElementById('categoryComing');
-   
+
     const sumEstimate = sumAttendance()
 
     for (let i = 0; i < sumEstimate.length; i++) {
@@ -129,13 +129,12 @@ function comingName() {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td style="text-align: center;" >${sumEstimate[i].category}</td>
-            <td style="text-align: center;" >$ ${sumEstimate[i].totalRevenue}</td>
+            <td style="text-align: center;" >$ ${sumEstimate[i].totalRevenue.toLocaleString('es')}</td>
             <td style="text-align: center;" >${sumEstimate[i].percentageAtte.toFixed(2)} %</td>
         `;
         categoryComing.appendChild(row);
       }
     }
-  
 
 
 /* SECTION 3: Past Events statictic by name (TO-DO: category) */
@@ -187,7 +186,7 @@ function pastName() {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td style="text-align: center;" >${arraysums[i].category}</td>
-            <td style="text-align: center;" >$ ${arraysums[i].totalRevenue}</td>
+            <td style="text-align: center;" >$ ${arraysums[i].totalRevenue.toLocaleString('es')}</td>
             <td style="text-align: center;" >${arraysums[i].percentageAtte.toFixed(2)}%</td>
             `
         categoryPast.appendChild(row)
